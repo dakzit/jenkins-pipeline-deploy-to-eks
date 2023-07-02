@@ -1,4 +1,3 @@
-#!/usr/bin/env groovy
 pipeline {
     agent any
     environment {
@@ -9,9 +8,7 @@ pipeline {
     stages {
         stage('Create Terraform Backend') {
             steps {
-                // Navigate to the Terraform directory
                 dir('terraform') {
-                    // Initialize the Terraform backend
                     sh 'terraform init'
                 }
             }
@@ -20,7 +17,6 @@ pipeline {
             steps {
                 script {
                     dir('terraform') {
-                        sh "terraform apply"
                         sh "terraform apply -auto-approve"
                     }
                 }
