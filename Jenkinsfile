@@ -7,6 +7,15 @@ pipeline {
         AWS_DEFAULT_REGION = "us-east-1"
     }
     stages {
+        stage('Create Terraform Backend') {
+            steps {
+                // Navigate to the Terraform directory
+                dir('terraform') {
+                    // Initialize the Terraform backend
+                    sh 'terraform init'
+                }
+            }
+        }
         stage("Create an EKS Cluster") {
             steps {
                 script {
